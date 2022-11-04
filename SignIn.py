@@ -10,6 +10,8 @@ import time  # 导入time模块实现一些动画
 
 import Desktop  # 导入自定义模块Desktop显示学生信息管理系统主要内容
 
+import os  # 用于启动主程序
+
 
 class SignIn:  # 登录界面对象
     def __init__(self):
@@ -92,16 +94,19 @@ class SignIn:  # 登录界面对象
             self.userpwd_enter.set(self.cfg.get("User", "userpwd"))
             msg.showinfo("登陆成功！",
                          "你好，" + self.cfg.get("User", "username") + "。即将进入学生信息管理系统！按确定进入！")
+            os.system('start python desktop.py')  
             self.win.destroy()
 
-    def login_in(self, ):  # 确定登录
+    def login_in(self, ):  # 确定登录 修复时注：该函数内添加的代码不会执行，经研究后发现程序的数据文件内配置了自动登录，而自动登录是在该函数外单独处理的
         username_enter = self.username_enter.get()
         userpwd_enter = self.userpwd_enter.get()
         if username_enter != "" and userpwd_enter != "":
             if username_enter == self.cfg.get("User", "username") and userpwd_enter == self.cfg.get("User", "userpwd"):
                 self.cfg.set("User", "login_next", str(self.login_next.get()))
-                self.cfg.write(open("Date\\Config.ini", "w"))
+                self.cfg.write(open("Date\\Config.ini", "w",encoding='utf-8'))
                 msg.showinfo("登陆成功！", "你好，" + self.cfg.get("User", "username") + "。即将进入学生信息管理系统！按确定进入！")
+                #print('吱个声说明login_in在运行')
+                os.system('start python desktop.py')                
                 self.win.destroy()
             else:
                 if username_enter != self.cfg.get("User", "username"):

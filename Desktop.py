@@ -15,7 +15,7 @@ class Desktop:  # 主要界面
         super(Desktop, self).__init__()
 
         self.cfg = configparser.ConfigParser()  # 实例化configparser
-        self.cfg.read("Date\\Config.ini")  # 读取配置文件
+        self.cfg.read("Date\\Config.ini",encoding='utf-8')  # 读取配置文件
 
         self.win = self.Window()  # 创建窗口
         self.desktop = self.Desktop_()
@@ -136,7 +136,7 @@ class Desktop:  # 主要界面
             else:
                 if name_enter != "None":
                     msg.showinfo("更改成功！", "已经成功更改信息！点击确定以退出！")
-                    self.cfg.write(open("Date\\Config.ini", "w"))
+                    self.cfg.write(open("Date\\Config.ini", "w",encoding='utf-8'))
                     change_window.destroy()
                 else:
                     change_window.attributes("-topmost", False)
@@ -152,13 +152,13 @@ class Desktop:  # 主要界面
                     change_window.attributes("-topmost", False)
                     msg.showinfo("更改成功！", "已经成功更改信息！点击确定以退出！")
                     self.cfg.set("User", "username", name_enter)
-                    self.cfg.write(open("Date\\Config.ini", "w"))
+                    self.cfg.write(open("Date\\Config.ini", "w",encoding='utf-8'))
                     change_window.destroy()
                 else:
                     change_window.attributes("-topmost", False)
                     msg.showinfo("更改成功！", "已经成功更改信息！点击确定以退出！")
                     self.cfg.set("User", "userpwd", pwd_enter)
-                    self.cfg.write(open("Date\\Config.ini", "w"))
+                    self.cfg.write(open("Date\\Config.ini", "w",encoding='utf-8'))
                     change_window.destroy()
 
     def Basic_TreeView(self, ):  # 表格
